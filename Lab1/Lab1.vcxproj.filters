@@ -83,4 +83,12 @@
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\res\FogShader.frag">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\FogShader.vert">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
 </Project>

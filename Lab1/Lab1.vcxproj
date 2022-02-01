@@ -37,6 +37,10 @@
     <Text Include="Shaders\fragShader.txt" />
     <Text Include="Shaders\vertShader.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\res\FogShader.frag" />
+    <None Include="..\res\FogShader.vert" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{D246FDDF-B30E-4F14-80F8-095FA4E04ECF}</ProjectGuid>
     <RootNamespace>Lab1</RootNamespace>
@@ -48,7 +52,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>

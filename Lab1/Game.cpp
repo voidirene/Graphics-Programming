@@ -35,7 +35,12 @@ void Game::InitializeSystems()
 	mesh1.LoadModel("..\\res\\monkey3.obj"); //loads a mesh from file
 	mesh2.LoadModel("..\\res\\teapot.obj");
 	mesh3.LoadModel("..\\res\\capsule.obj");
+
 	shader.InitializeShader("..\\res\\shader"); //create a new shader
+	fogshader.InitializeShader("..\\res\\FogShader");
+	fogshader.UseShader();
+	LinkShaderData(fogshader);
+
 	texture.InitializeTexture("..\\res\\bricks.jpg"); //load a texture
 	texture.InitializeTexture("..\\res\\water.jpg");
 	texture.InitializeTexture("..\\res\\grass.jpg");
@@ -44,6 +49,13 @@ void Game::InitializeSystems()
 
 	audio.AddNewSound("..\\res\\bang.wav");
 	audio.AddNewBackgroundMusic("..\\res\\background.wav");
+}
+
+void Game::LinkShaderData(Shading fogshader)
+{
+	fogshader.setVec3("fogColor", glm::vec3(0.2, 0.2, 0.2));
+	fogshader.setFloat("minDist", -5.0f);
+	fogshader.setFloat("maxDist", 5.0f);
 }
 
 void Game::GameLoop()
@@ -105,22 +117,29 @@ void Game::UpdateDisplay()
 {
 	gameDisplay->ClearDisplay(0.0f, 0.0f, 0.0f, 1.0f); //clear the display
 
-	shader.UseShader();
+	//shader.UseShader();
+	fogshader.UseShader();
 
 	//MESH1
-	shader.UpdateTransform(mesh1.transform, camera);
+	//shader.UpdateTransform(mesh1.transform, camera);
+	fogshader.UpdateTransform(mesh1.transform, camera);
+	fogshader.setMat4("ModelMatrix", mesh1.transform.GetModel());
 	texture.UseTexture(0);
 	mesh1.Display(-1.0, 0.0, 0.0, counter, 0.0, 0.0, 1.0, camera);
 
 	//MESH2
-	shader.UpdateTransform(mesh2.transform, camera);
+	//shader.UpdateTransform(mesh2.transform, camera);
+	fogshader.UpdateTransform(mesh2.transform, camera);
+	fogshader.setMat4("ModelMatrix", mesh2.transform.GetModel());
 	texture.UseTexture(1);
 	mesh2.Display(0.0, sinf(counter) * 5, 0.0, 0.0, 0.0, 0.0, 0.1, camera);
 
 	//MESH3
-	shader.UpdateTransform(mesh3.transform, camera);
+	//shader.UpdateTransform(mesh3.transform, camera);
+	fogshader.UpdateTransform(mesh3.transform, camera);
+	fogshader.setMat4("ModelMatrix", mesh3.transform.GetModel());
 	texture.UseTexture(2);
-	mesh3.Display(3.0, 0.0, 0.0, 0.0, counter, 0.0, 1.0, camera);
+	mesh3.Display(3.0, 0.0, sinf(counter) * 15, 0.0, counter, 0.0, 1.0, camera);
 
 	counter += 0.01f;
 

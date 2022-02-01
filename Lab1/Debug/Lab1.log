@@ -1,0 +1,18 @@
+﻿  Game.cpp
+C:\Users\AMARGA200\Downloads\GP2-CWK-master\GraphicsP\Graphics-Programming\Lab1\Camera.h(77,1): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\AMARGA200\Downloads\GP2-CWK-master\GraphicsP\Graphics-Programming\Lab1\Camera.h(82,1): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\AMARGA200\Downloads\GP2-CWK-master\GraphicsP\Graphics-Programming\Lab1\Camera.h(87,1): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\AMARGA200\Downloads\GP2-CWK-master\GraphicsP\Graphics-Programming\Lab1\Game.cpp(135,71): warning C4305: 'argument': truncation from 'double' to 'float'
+  Lab1.vcxproj -> C:\Users\AMARGA200\Downloads\GP2-CWK-master\GraphicsP\Graphics-Programming\Debug\Labs.exe
