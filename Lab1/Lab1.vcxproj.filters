@@ -90,5 +90,11 @@
     <None Include="..\res\FogShader.vert">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="..\res\ToonShader.frag">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\ToonShader.vert">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

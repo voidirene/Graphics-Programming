@@ -20,9 +20,24 @@ public:
 		this->projectionMatrix = glm::perspective(fov, aspectRatio, nearClip, farClip);
 	}
 
+	glm::vec3 GetPosition()
+	{
+		return this->cameraPosition;
+	}
+
 	inline glm::mat4 GetViewProjection() const //creates projection matrix
 	{
 		return projectionMatrix * glm::lookAt(cameraPosition, cameraPosition + forwardVector, upVector);
+	}
+
+	inline glm::mat4 GetProjection() const
+	{
+		return projectionMatrix;
+	}
+
+	inline glm::mat4 GetView() const
+	{
+		return glm::lookAt(cameraPosition, cameraPosition + forwardVector, upVector);
 	}
 
 	void MouseControls(ScreenDisplay* display)

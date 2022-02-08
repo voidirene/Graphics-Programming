@@ -40,6 +40,8 @@
   <ItemGroup>
     <None Include="..\res\FogShader.frag" />
     <None Include="..\res\FogShader.vert" />
+    <None Include="..\res\ToonShader.frag" />
+    <None Include="..\res\ToonShader.vert" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{D246FDDF-B30E-4F14-80F8-095FA4E04ECF}</ProjectGuid>

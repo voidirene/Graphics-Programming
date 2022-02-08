@@ -39,7 +39,10 @@ void Game::InitializeSystems()
 	shader.InitializeShader("..\\res\\shader"); //create a new shader
 	fogshader.InitializeShader("..\\res\\FogShader");
 	fogshader.UseShader();
-	LinkShaderData(fogshader);
+	LinkFogShaderData(fogshader);
+	//toonshader.InitializeShader("..\\res\\ToonShader");
+	//toonshader.UseShader();
+	//LinkToonShaderData(toonshader);
 
 	texture.InitializeTexture("..\\res\\bricks.jpg"); //load a texture
 	texture.InitializeTexture("..\\res\\water.jpg");
@@ -51,11 +54,16 @@ void Game::InitializeSystems()
 	audio.AddNewBackgroundMusic("..\\res\\background.wav");
 }
 
-void Game::LinkShaderData(Shading fogshader)
+void Game::LinkFogShaderData(Shading fogshader) //TODO: combine these methods?
 {
 	fogshader.setVec3("fogColor", glm::vec3(0.2, 0.2, 0.2));
 	fogshader.setFloat("minDist", -5.0f);
 	fogshader.setFloat("maxDist", 5.0f);
+}
+
+void Game::LinkToonShaderData(Shading toonshader)
+{
+	toonshader.setVec3("lightDir", glm::vec3(1, 5, 1));
 }
 
 void Game::GameLoop()
@@ -119,11 +127,13 @@ void Game::UpdateDisplay()
 
 	//shader.UseShader();
 	fogshader.UseShader();
+	//toonshader.UseShader();
 
 	//MESH1
 	//shader.UpdateTransform(mesh1.transform, camera);
 	fogshader.UpdateTransform(mesh1.transform, camera);
 	fogshader.setMat4("ModelMatrix", mesh1.transform.GetModel());
+	//toonshader.UpdateTransform(mesh1.transform, camera);
 	texture.UseTexture(0);
 	mesh1.Display(-1.0, 0.0, 0.0, counter, 0.0, 0.0, 1.0, camera);
 
@@ -131,6 +141,7 @@ void Game::UpdateDisplay()
 	//shader.UpdateTransform(mesh2.transform, camera);
 	fogshader.UpdateTransform(mesh2.transform, camera);
 	fogshader.setMat4("ModelMatrix", mesh2.transform.GetModel());
+	//toonshader.UpdateTransform(mesh2.transform, camera);
 	texture.UseTexture(1);
 	mesh2.Display(0.0, sinf(counter) * 5, 0.0, 0.0, 0.0, 0.0, 0.1, camera);
 
@@ -138,6 +149,7 @@ void Game::UpdateDisplay()
 	//shader.UpdateTransform(mesh3.transform, camera);
 	fogshader.UpdateTransform(mesh3.transform, camera);
 	fogshader.setMat4("ModelMatrix", mesh3.transform.GetModel());
+	//toonshader.UpdateTransform(mesh3.transform, camera);
 	texture.UseTexture(2);
 	mesh3.Display(3.0, 0.0, sinf(counter) * 15, 0.0, counter, 0.0, 1.0, camera);
 

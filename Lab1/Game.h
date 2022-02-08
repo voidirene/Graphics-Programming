@@ -32,7 +32,8 @@ private:
 
 	bool DetectCollision(glm::vec3 position1, float radius1, glm::vec3 position2, float radius2);
 
-	void LinkShaderData(Shading shader);
+	void LinkFogShaderData(Shading fogshader);
+	void LinkToonShaderData(Shading toonshader);
 
 	GameState gameState; //Variable holding a reference to the current game state
 	ScreenDisplay* gameDisplay; //Variable holding a pointer to the game's screen display
@@ -45,6 +46,7 @@ private:
 	Texturing texture;
 	Shading shader;
 	Shading fogshader;
+	Shading toonshader;
 	Audio audio;
 
 	float counter;
