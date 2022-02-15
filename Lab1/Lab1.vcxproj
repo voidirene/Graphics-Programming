@@ -40,6 +40,8 @@
   <ItemGroup>
     <None Include="..\res\FogShader.frag" />
     <None Include="..\res\FogShader.vert" />
+    <None Include="..\res\RimLightingShader.frag" />
+    <None Include="..\res\RimLightingShader.vert" />
     <None Include="..\res\ToonShader.frag" />
     <None Include="..\res\ToonShader.vert" />
   </ItemGroup>

@@ -34,6 +34,7 @@ private:
 
 	void LinkFogShaderData(Shading fogshader);
 	void LinkToonShaderData(Shading toonshader);
+	void LinkRimLightingShaderData(Shading rimshader);
 
 	GameState gameState; //Variable holding a reference to the current game state
 	ScreenDisplay* gameDisplay; //Variable holding a pointer to the game's screen display
@@ -47,6 +48,7 @@ private:
 	Shading shader;
 	Shading fogshader;
 	Shading toonshader;
+	Shading rimshader;
 	Audio audio;
 
 	float counter;

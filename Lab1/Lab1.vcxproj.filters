@@ -96,5 +96,11 @@
     <None Include="..\res\ToonShader.vert">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="..\res\RimLightingShader.frag">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\RimLightingShader.vert">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

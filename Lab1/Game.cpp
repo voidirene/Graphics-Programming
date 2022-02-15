@@ -38,11 +38,14 @@ void Game::InitializeSystems()
 
 	shader.InitializeShader("..\\res\\shader"); //create a new shader
 	fogshader.InitializeShader("..\\res\\FogShader");
-	fogshader.UseShader();
-	LinkFogShaderData(fogshader);
-	//toonshader.InitializeShader("..\\res\\ToonShader");
+	//fogshader.UseShader();
+	//LinkFogShaderData(fogshader);
+	toonshader.InitializeShader("..\\res\\ToonShader");
 	//toonshader.UseShader();
 	//LinkToonShaderData(toonshader);
+	rimshader.InitializeShader("..\\res\\RimLightingShader");
+	rimshader.UseShader();
+	LinkRimLightingShaderData(rimshader);
 
 	texture.InitializeTexture("..\\res\\bricks.jpg"); //load a texture
 	texture.InitializeTexture("..\\res\\water.jpg");
@@ -64,6 +67,12 @@ void Game::LinkFogShaderData(Shading fogshader) //TODO: combine these methods?
 void Game::LinkToonShaderData(Shading toonshader)
 {
 	toonshader.setVec3("lightDir", glm::vec3(1, 5, 1));
+}
+
+void Game::LinkRimLightingShaderData(Shading rimshader)
+{
+	rimshader.setVec3("lightDir", glm::vec3(0, 0, 3));
+	rimshader.setMat4("m", mesh1.getMM());
 }
 
 void Game::GameLoop()
@@ -126,30 +135,35 @@ void Game::UpdateDisplay()
 	gameDisplay->ClearDisplay(0.0f, 0.0f, 0.0f, 1.0f); //clear the display
 
 	//shader.UseShader();
-	fogshader.UseShader();
+	//fogshader.UseShader();
 	//toonshader.UseShader();
+	LinkRimLightingShaderData(rimshader);
+	rimshader.UseShader();
 
 	//MESH1
 	//shader.UpdateTransform(mesh1.transform, camera);
-	fogshader.UpdateTransform(mesh1.transform, camera);
-	fogshader.setMat4("ModelMatrix", mesh1.transform.GetModel());
+	//fogshader.UpdateTransform(mesh1.transform, camera);
+	//fogshader.setMat4("ModelMatrix", mesh1.transform.GetModel());
 	//toonshader.UpdateTransform(mesh1.transform, camera);
+	rimshader.UpdateTransform(mesh1.transform, camera);
 	texture.UseTexture(0);
 	mesh1.Display(-1.0, 0.0, 0.0, counter, 0.0, 0.0, 1.0, camera);
 
 	//MESH2
 	//shader.UpdateTransform(mesh2.transform, camera);
-	fogshader.UpdateTransform(mesh2.transform, camera);
-	fogshader.setMat4("ModelMatrix", mesh2.transform.GetModel());
+	//fogshader.UpdateTransform(mesh2.transform, camera);
+	//fogshader.setMat4("ModelMatrix", mesh2.transform.GetModel());
 	//toonshader.UpdateTransform(mesh2.transform, camera);
+	rimshader.UpdateTransform(mesh2.transform, camera);
 	texture.UseTexture(1);
 	mesh2.Display(0.0, sinf(counter) * 5, 0.0, 0.0, 0.0, 0.0, 0.1, camera);
 
 	//MESH3
 	//shader.UpdateTransform(mesh3.transform, camera);
-	fogshader.UpdateTransform(mesh3.transform, camera);
-	fogshader.setMat4("ModelMatrix", mesh3.transform.GetModel());
+	//fogshader.UpdateTransform(mesh3.transform, camera);
+	//fogshader.setMat4("ModelMatrix", mesh3.transform.GetModel());
 	//toonshader.UpdateTransform(mesh3.transform, camera);
+	rimshader.UpdateTransform(mesh3.transform, camera);
 	texture.UseTexture(2);
 	mesh3.Display(3.0, 0.0, sinf(counter) * 15, 0.0, counter, 0.0, 1.0, camera);
 

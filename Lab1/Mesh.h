@@ -70,6 +70,8 @@ public:
 	Transform transform;
 	BoundingSphere boundingSphere;
 
+	glm::mat4 getMM() { return transform.GetModel(); }
+
 private:
 
 	void InitializeMesh(Vertex* vertices, unsigned int numberOfVertices, unsigned int* indices, unsigned int numberOfIndices);
