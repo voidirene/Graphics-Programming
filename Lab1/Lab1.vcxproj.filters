@@ -76,14 +76,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Shaders\fragShader.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="Shaders\vertShader.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="..\res\FogShader.frag">
       <Filter>Resource Files</Filter>
     </None>
@@ -100,6 +92,18 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="..\res\RimLightingShader.vert">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\ToonRimShader.frag">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\ToonRimShader.vert">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\shader.frag">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\shader.vert">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

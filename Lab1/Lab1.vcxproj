@@ -34,14 +34,14 @@
     <ClCompile Include="Texturing.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Shaders\fragShader.txt" />
-    <Text Include="Shaders\vertShader.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="..\res\FogShader.frag" />
     <None Include="..\res\FogShader.vert" />
     <None Include="..\res\RimLightingShader.frag" />
     <None Include="..\res\RimLightingShader.vert" />
+    <None Include="..\res\shader.frag" />
+    <None Include="..\res\shader.vert" />
+    <None Include="..\res\ToonRimShader.frag" />
+    <None Include="..\res\ToonRimShader.vert" />
     <None Include="..\res\ToonShader.frag" />
     <None Include="..\res\ToonShader.vert" />
   </ItemGroup>
@@ -56,7 +56,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
