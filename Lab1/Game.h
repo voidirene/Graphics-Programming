@@ -36,6 +36,7 @@ private:
 	void LinkToonShaderData(Shading toonshader);
 	void LinkRimLightingShaderData(Shading rimshader);
 	void LinkToonRimShaderData(Shading toonrimshader);
+	void LinkGeoShader(Shading geoshader);
 
 	GameState gameState; //Variable holding a reference to the current game state
 	ScreenDisplay* gameDisplay; //Variable holding a pointer to the game's screen display
@@ -51,6 +52,7 @@ private:
 	Shading toonshader;
 	Shading rimshader;
 	Shading toonrimshader;
+	Shading geoshader;
 	Audio audio;
 
 	float counter;

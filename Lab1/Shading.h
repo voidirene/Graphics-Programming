@@ -11,6 +11,7 @@ public:
 	~Shading();
 
 	void InitializeShader(const std::string& file);
+	void InitializeGeoShader(const std::string& file);
 	void UseShader();
 	void UpdateTransform(const Transform& transform, const Camera& camera);
 
@@ -155,7 +156,7 @@ private:
 
 	GLuint program; //holds the shader program
 
-	static const unsigned int numberOfShaders = 2; //amount of shaders
+	static const unsigned int numberOfShaders = 3; //amount of shaders
 	GLuint shaders[numberOfShaders]; //array of shaders
 
 	enum

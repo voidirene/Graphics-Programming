@@ -46,9 +46,12 @@ void Game::InitializeSystems()
 	rimshader.InitializeShader("..\\res\\RimLightingShader");
 	//rimshader.UseShader();
 	//LinkRimLightingShaderData(rimshader);
-	toonrimshader.InitializeShader("..\\res\\ToonRimShader");
-	toonrimshader.UseShader();
-	LinkToonRimShaderData(toonrimshader);
+	//toonrimshader.InitializeShader("..\\res\\ToonRimShader");
+	//toonrimshader.UseShader();
+	//LinkToonRimShaderData(toonrimshader);
+	geoshader.InitializeGeoShader("..\\res\\shaderGeoText");
+	geoshader.UseShader();
+	LinkGeoShader(geoshader);
 
 	texture.InitializeTexture("..\\res\\bricks.jpg"); //load a texture
 	texture.InitializeTexture("..\\res\\water.jpg");
@@ -82,6 +85,17 @@ void Game::LinkToonRimShaderData(Shading toonrimshader)
 {
 	toonrimshader.setVec3("lightDir", glm::vec3(0, 0, 3));
 	toonrimshader.setMat4("m", mesh1.getMM());
+}
+
+void Game::LinkGeoShader(Shading geoshader)
+{
+	float randomX = ((float)rand() / (RAND_MAX));
+	float randomY = ((float)rand() / (RAND_MAX));
+	float randomZ = ((float)rand() / (RAND_MAX));
+	geoshader.setFloat("randColourX", randomX);
+	geoshader.setFloat("randColourY", randomY);
+	geoshader.setFloat("randColourZ", randomZ);
+	geoshader.setFloat("time", counter);
 }
 
 void Game::GameLoop()
@@ -148,8 +162,10 @@ void Game::UpdateDisplay()
 	//toonshader.UseShader();
 	//LinkRimLightingShaderData(rimshader);
 	//rimshader.UseShader();
-	LinkToonRimShaderData(toonrimshader);
-	toonrimshader.UseShader();
+	//LinkToonRimShaderData(toonrimshader);
+	//toonrimshader.UseShader();
+	LinkGeoShader(geoshader);
+	geoshader.UseShader();
 
 	//MESH1
 	//shader.UpdateTransform(mesh1.transform, camera);
@@ -157,7 +173,8 @@ void Game::UpdateDisplay()
 	//fogshader.setMat4("ModelMatrix", mesh1.transform.GetModel());
 	//toonshader.UpdateTransform(mesh1.transform, camera);
 	//rimshader.UpdateTransform(mesh1.transform, camera);
-	toonrimshader.UpdateTransform(mesh1.transform, camera);
+	//toonrimshader.UpdateTransform(mesh1.transform, camera);
+	geoshader.UpdateTransform(mesh1.transform, camera);
 	texture.UseTexture(0);
 	mesh1.Display(-1.0, 0.0, 0.0, counter, 0.0, 0.0, 1.0, camera);
 
@@ -167,7 +184,8 @@ void Game::UpdateDisplay()
 	//fogshader.setMat4("ModelMatrix", mesh2.transform.GetModel());
 	//toonshader.UpdateTransform(mesh2.transform, camera);
 	//rimshader.UpdateTransform(mesh2.transform, camera);
-	toonrimshader.UpdateTransform(mesh2.transform, camera);
+	//toonrimshader.UpdateTransform(mesh2.transform, camera);
+	geoshader.UpdateTransform(mesh2.transform, camera);
 	texture.UseTexture(1);
 	mesh2.Display(0.0, sinf(counter) * 5, 0.0, 0.0, 0.0, 0.0, 0.1, camera);
 
@@ -177,7 +195,8 @@ void Game::UpdateDisplay()
 	//fogshader.setMat4("ModelMatrix", mesh3.transform.GetModel());
 	//toonshader.UpdateTransform(mesh3.transform, camera);
 	//rimshader.UpdateTransform(mesh3.transform, camera);
-	toonrimshader.UpdateTransform(mesh3.transform, camera);
+	//toonrimshader.UpdateTransform(mesh3.transform, camera);
+	geoshader.UpdateTransform(mesh3.transform, camera);
 	texture.UseTexture(2);
 	mesh3.Display(3.0, 0.0, sinf(counter) * 15, 0.0, counter, 0.0, 1.0, camera);
 

@@ -1,1 +1,18 @@
-﻿  Lab1.vcxproj -> C:\Projects\Graphics-Programming\Debug\Labs.exe
+﻿  Game.cpp
+C:\Users\AMARGA200\Documents\GitHub\Graphics-Programming\Lab1\Camera.h(92,1): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\AMARGA200\Documents\GitHub\Graphics-Programming\Lab1\Camera.h(97,1): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\AMARGA200\Documents\GitHub\Graphics-Programming\Lab1\Camera.h(102,1): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\AMARGA200\Documents\GitHub\Graphics-Programming\Lab1\Game.cpp(190,71): warning C4305: 'argument': truncation from 'double' to 'float'
+  Lab1.vcxproj -> C:\Users\AMARGA200\Documents\GitHub\Graphics-Programming\Debug\Labs.exe
