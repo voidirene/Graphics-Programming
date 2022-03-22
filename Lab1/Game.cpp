@@ -51,7 +51,7 @@ void Game::InitializeSystems()
 	//LinkToonRimShaderData(toonrimshader);
 	geoshader.InitializeGeoShader("..\\res\\shaderGeoText");
 	geoshader.UseShader();
-	LinkGeoShader(geoshader);
+	LinkGeoShader();
 
 	texture.InitializeTexture("..\\res\\bricks.jpg"); //load a texture
 	texture.InitializeTexture("..\\res\\water.jpg");
@@ -153,31 +153,31 @@ void Game::Skybox()
 }
 
 
-void Game::LinkFogShaderData(Shading fogshader) //TODO: combine these methods?
+void Game::LinkFogShaderData() //TODO: combine these methods?
 {
 	fogshader.setVec3("fogColor", glm::vec3(0.2, 0.2, 0.2));
 	fogshader.setFloat("minDist", -5.0f);
 	fogshader.setFloat("maxDist", 5.0f);
 }
 
-void Game::LinkToonShaderData(Shading toonshader)
+void Game::LinkToonShaderData()
 {
 	toonshader.setVec3("lightDir", glm::vec3(1, 5, 1));
 }
 
-void Game::LinkRimLightingShaderData(Shading rimshader)
+void Game::LinkRimLightingShaderData()
 {
 	rimshader.setVec3("lightDir", glm::vec3(0, 0, 3));
 	rimshader.setMat4("m", mesh1.getMM());
 }
 
-void Game::LinkToonRimShaderData(Shading toonrimshader)
+void Game::LinkToonRimShaderData()
 {
 	toonrimshader.setVec3("lightDir", glm::vec3(0, 0, 3));
 	toonrimshader.setMat4("m", mesh1.getMM());
 }
 
-void Game::LinkGeoShader(Shading geoshader)
+void Game::LinkGeoShader()
 {
 	float randomX = ((float)rand() / (RAND_MAX));
 	float randomY = ((float)rand() / (RAND_MAX));
@@ -255,7 +255,7 @@ void Game::UpdateDisplay()
 	//LinkToonRimShaderData(toonrimshader);
 	//toonrimshader.UseShader();
 	geoshader.UseShader();	
-	LinkGeoShader(geoshader);
+	LinkGeoShader();
 	//MESH1
 	//shader.UpdateTransform(mesh1.transform, camera);
 	//fogshader.UpdateTransform(mesh1.transform, camera);
