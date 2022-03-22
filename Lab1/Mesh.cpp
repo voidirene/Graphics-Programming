@@ -1,9 +1,9 @@
 #include "Mesh.h"
 #include <vector>
 
-Mesh::Mesh()
+Mesh::Mesh() : displayCount(0), vao(0)
 {
-
+	memset(vaBuffers, 0, sizeof(vaBuffers));
 }
 
 Mesh::~Mesh()

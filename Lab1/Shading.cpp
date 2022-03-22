@@ -2,9 +2,10 @@
 #include <fstream>
 #include <iostream>
 
-Shading::Shading()
+Shading::Shading() : program(0)
 {
-
+	memset(shaders, 0, sizeof(shaders));
+	memset(uniforms, 0, sizeof(uniforms));
 }
 
 Shading::~Shading()

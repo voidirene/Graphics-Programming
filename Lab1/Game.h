@@ -56,5 +56,13 @@ private:
 	Audio audio;
 
 	float counter;
+
+	void Skybox();
+	void InitializeSkybox();
+	GLuint skyboxVAO, skyboxVBO, cubemapTexture;
+	std::vector<std::string> faces;
+	Texturing skybox;
+	Shading shaderSkybox;
+
 };
 

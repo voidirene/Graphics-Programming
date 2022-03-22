@@ -85,9 +85,6 @@
     <None Include="..\res\ToonShader.frag">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="..\res\ToonShader.vert">
-      <Filter>Resource Files</Filter>
-    </None>
     <None Include="..\res\RimLightingShader.frag">
       <Filter>Resource Files</Filter>
     </None>
@@ -113,6 +110,15 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="..\res\shaderGeoText.vert">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\SkyboxShader.frag">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\SkyboxShader.vert">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\ToonShader.vert">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

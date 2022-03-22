@@ -1,6 +1,6 @@
 #include "Audio.h"
 
-Audio::Audio()
+Audio::Audio() : music(nullptr)
 {
 	int audioRate = 22050;
 	Uint16 audioFormat = AUDIO_S16SYS;

@@ -1,6 +1,6 @@
 #include "ScreenDisplay.h"
 
-ScreenDisplay::ScreenDisplay()
+ScreenDisplay::ScreenDisplay() : glew(0)
 {
 	window = nullptr;
 	displayWidth = 1600.0f;

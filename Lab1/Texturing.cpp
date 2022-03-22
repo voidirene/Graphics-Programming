@@ -6,6 +6,7 @@
 Texturing::Texturing()
 {
 	amountOfTextures = 0;
+	memset(textureHandler, 0, sizeof(textureHandler));
 }
 
 Texturing::~Texturing()
@@ -54,4 +55,36 @@ void Texturing::UseTexture(unsigned int number)
 	assert(number >= 0 && number <= 31); //check that we are working with one of the 32 textures
 
 	glBindTexture(GL_TEXTURE_2D, textureHandler[number]); //type of and texture to bind to unit
+}
+
+GLuint Texturing::LoadCubemap(std::vector<std::string> faces)
+{
+	glGenTextures(1, &textureHandler[amountOfTextures]);
+	glBindTexture(GL_TEXTURE_CUBE_MAP, textureHandler[amountOfTextures]);
+
+	int width, height, nrChannels;
+	for (unsigned int i = 0; i < faces.size(); i++)
+	{
+		unsigned char* data = stbi_load(faces[i].c_str(), &width, &height, &nrChannels, 0);
+		if (data)
+		{
+			glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i,
+				0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data
+			);
+			stbi_image_free(data);
+		}
+		else
+		{
+			std::cout << "Cubemap texture failed to load at path: " << faces[i] << std::endl;
+			stbi_image_free(data);
+		}
+	}
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+
+	amountOfTextures += 1;
+	return textureHandler[amountOfTextures - 1];
 }

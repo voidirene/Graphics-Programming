@@ -2,7 +2,7 @@
 
 //unsigned int indices[] = { 0, 1, 2 };
 
-Game::Game()
+Game::Game() : cubemapTexture(0), skyboxVAO(0), skyboxVBO(0)
 {
 	gameState = GameState::PLAYING; //set the game state to PLAYING
 	gameDisplay = new ScreenDisplay(); //create a new display
@@ -61,7 +61,97 @@ void Game::InitializeSystems()
 
 	audio.AddNewSound("..\\res\\bang.wav");
 	audio.AddNewBackgroundMusic("..\\res\\background.wav");
+
+	shaderSkybox.InitializeShader("..\\res\\SkyboxShader");
+	InitializeSkybox();
 }
+
+void Game::InitializeSkybox()
+{
+	std::vector<std::string> faces
+	{
+		"..\\res\\skybox\\right.jpg",
+		"..\\res\\skybox\\left.jpg",
+		"..\\res\\skybox\\top.jpg",
+		"..\\res\\skybox\\bottom.jpg",
+		"..\\res\\skybox\\front.jpg",
+		"..\\res\\skybox\\back.jpg"
+	};
+
+	cubemapTexture = skybox.LoadCubemap(faces); //Load the cubemap using "faces" into cubemapTextures
+
+	float skyboxVertices[] = {
+		// positions          
+		-6.0f,  6.0f, -6.0f,
+		-6.0f, -6.0f, -6.0f,
+		6.0f, -6.0f, -6.0f,
+		6.0f, -6.0f, -6.0f,
+		6.0f,  6.0f, -6.0f,
+		-6.0f,  6.0f, -6.0f,
+
+		-6.0f, -6.0f,  6.0f,
+		-6.0f, -6.0f, -6.0f,
+		-6.0f,  6.0f, -6.0f,
+		-6.0f,  6.0f, -6.0f,
+		-6.0f,  6.0f,  6.0f,
+		-6.0f, -6.0f,  6.0f,
+
+		6.0f, -6.0f, -6.0f,
+		6.0f, -6.0f,  6.0f,
+		6.0f,  6.0f,  6.0f,
+		6.0f,  6.0f,  6.0f,
+		6.0f,  6.0f, -6.0f,
+		6.0f, -6.0f, -6.0f,
+
+		-6.0f, -6.0f,  6.0f,
+		-6.0f,  6.0f,  6.0f,
+		6.0f,  6.0f,  6.0f,
+		6.0f,  6.0f,  6.0f,
+		6.0f, -6.0f,  6.0f,
+		-6.0f, -6.0f,  6.0f,
+
+		-6.0f,  6.0f, -6.0f,
+		6.0f,  6.0f, -6.0f,
+		6.0f,  6.0f,  6.0f,
+		6.0f,  6.0f,  6.0f,
+		-6.0f,  6.0f,  6.0f,
+		-6.0f,  6.0f, -6.0f,
+
+		-6.0f, -6.0f, -6.0f,
+		-6.0f, -6.0f,  6.0f,
+		6.0f, -6.0f, -6.0f,
+		6.0f, -6.0f, -6.0f,
+		-6.0f, -6.0f,  6.0f,
+		6.0f, -6.0f,  6.0f
+	};
+
+	//use openGL functionality to generate & bind data into buffers
+	glGenVertexArrays(1, &skyboxVAO);
+	glGenBuffers(1, &skyboxVBO);
+	glBindVertexArray(skyboxVAO);
+	glBindBuffer(GL_ARRAY_BUFFER, skyboxVBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(skyboxVertices), &skyboxVertices, GL_STATIC_DRAW);
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+}
+
+void Game::Skybox()
+{
+	glDepthFunc(GL_LEQUAL);  // change depth function so depth test passes when values are equal to depth buffer's content
+	shaderSkybox.UseShader();
+	shaderSkybox.setInt("skybox", 0);
+	glm::mat4 view = glm::mat4(glm::mat3(camera.GetView())); // remove translation from the view matrix
+	shaderSkybox.setMat4("view", view);
+	shaderSkybox.setMat4("projection", camera.GetProjection());
+	// skybox cube
+	glBindVertexArray(skyboxVAO);
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapTexture);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	glBindVertexArray(0);
+	glDepthFunc(GL_LESS); // set depth function back to default
+}
+
 
 void Game::LinkFogShaderData(Shading fogshader) //TODO: combine these methods?
 {
@@ -156,7 +246,7 @@ void Game::ProcessUserInputs()
 void Game::UpdateDisplay()
 {
 	gameDisplay->ClearDisplay(0.0f, 0.0f, 0.0f, 1.0f); //clear the display
-
+	texture.UseTexture(0);
 	//shader.UseShader();
 	//fogshader.UseShader();
 	//toonshader.UseShader();
@@ -164,9 +254,8 @@ void Game::UpdateDisplay()
 	//rimshader.UseShader();
 	//LinkToonRimShaderData(toonrimshader);
 	//toonrimshader.UseShader();
+	geoshader.UseShader();	
 	LinkGeoShader(geoshader);
-	geoshader.UseShader();
-
 	//MESH1
 	//shader.UpdateTransform(mesh1.transform, camera);
 	//fogshader.UpdateTransform(mesh1.transform, camera);
@@ -175,7 +264,7 @@ void Game::UpdateDisplay()
 	//rimshader.UpdateTransform(mesh1.transform, camera);
 	//toonrimshader.UpdateTransform(mesh1.transform, camera);
 	geoshader.UpdateTransform(mesh1.transform, camera);
-	texture.UseTexture(0);
+
 	mesh1.Display(-1.0, 0.0, 0.0, counter, 0.0, 0.0, 1.0, camera);
 
 	//MESH2
@@ -201,6 +290,8 @@ void Game::UpdateDisplay()
 	mesh3.Display(3.0, 0.0, sinf(counter) * 15, 0.0, counter, 0.0, 1.0, camera);
 
 	counter += 0.01f;
+
+	Skybox();
 
 	glEnableClientState(GL_COLOR_ARRAY);
 	glEnd();
