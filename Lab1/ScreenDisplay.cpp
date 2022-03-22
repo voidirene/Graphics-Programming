@@ -24,7 +24,7 @@ void ScreenDisplay::InitializeDisplay()
 
 	glfwInit(); //initialize glfw
 
-	window = glfwCreateWindow(displayWidth, displayHeight, "GP2 Coursework Game Window", NULL, NULL); //create game window
+	window = glfwCreateWindow(displayWidth, displayHeight, "GP Coursework Game Window", NULL, NULL); //create game window
 
 	glfwMakeContextCurrent(window); //set up context
 	glew = glewInit(); //initialize glew

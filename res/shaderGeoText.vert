@@ -1,7 +1,6 @@
-//Version Number
 #version 400
 
-//The layout qualifers
+//The layout qualifiers
 layout (location = 0) in vec3 VertexPosition;
 layout (location = 2) in vec3 VertexNormal;
 

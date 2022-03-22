@@ -43,6 +43,8 @@
     <None Include="..\res\shaderGeoText.frag" />
     <None Include="..\res\shaderGeoText.geom" />
     <None Include="..\res\shaderGeoText.vert" />
+    <None Include="..\res\shaderReflection.frag" />
+    <None Include="..\res\shaderReflection.vert" />
     <None Include="..\res\SkyboxShader.frag" />
     <None Include="..\res\SkyboxShader.vert" />
     <None Include="..\res\ToonRimShader.frag" />
@@ -61,7 +63,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>

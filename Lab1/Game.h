@@ -37,6 +37,7 @@ private:
 	void LinkRimLightingShaderData();
 	void LinkToonRimShaderData();
 	void LinkGeoShader();
+	void LinkReflectionShader();
 
 	GameState gameState; //Variable holding a reference to the current game state
 	ScreenDisplay* gameDisplay; //Variable holding a pointer to the game's screen display
@@ -53,11 +54,12 @@ private:
 	Shading rimshader;
 	Shading toonrimshader;
 	Shading geoshader;
+	Shading reflectionshader;
 	Audio audio;
 
 	float counter;
 
-	void Skybox();
+	void DisplaySkybox();
 	void InitializeSkybox();
 	GLuint skyboxVAO, skyboxVBO, cubemapTexture;
 	std::vector<std::string> faces;

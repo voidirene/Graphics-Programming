@@ -46,12 +46,14 @@ void Game::InitializeSystems()
 	rimshader.InitializeShader("..\\res\\RimLightingShader");
 	//rimshader.UseShader();
 	//LinkRimLightingShaderData(rimshader);
-	//toonrimshader.InitializeShader("..\\res\\ToonRimShader");
+	toonrimshader.InitializeShader("..\\res\\ToonRimShader");
 	//toonrimshader.UseShader();
 	//LinkToonRimShaderData(toonrimshader);
 	geoshader.InitializeGeoShader("..\\res\\shaderGeoText");
-	geoshader.UseShader();
-	LinkGeoShader();
+	//geoshader.UseShader();
+	//LinkGeoShader();
+	reflectionshader.InitializeShader("..\\res\\shaderReflection");
+	reflectionshader.UseShader();
 
 	texture.InitializeTexture("..\\res\\bricks.jpg"); //load a texture
 	texture.InitializeTexture("..\\res\\water.jpg");
@@ -135,7 +137,7 @@ void Game::InitializeSkybox()
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
 }
 
-void Game::Skybox()
+void Game::DisplaySkybox()
 {
 	glDepthFunc(GL_LEQUAL);  // change depth function so depth test passes when values are equal to depth buffer's content
 	shaderSkybox.UseShader();
@@ -186,6 +188,15 @@ void Game::LinkGeoShader()
 	geoshader.setFloat("randColourY", randomY);
 	geoshader.setFloat("randColourZ", randomZ);
 	geoshader.setFloat("time", counter);
+}
+
+void Game::LinkReflectionShader()
+{
+	reflectionshader.setMat4("view", camera.GetView());
+	reflectionshader.setMat4("projection", camera.GetProjection());
+	reflectionshader.setMat4("model", mesh1.getMM()); //TODO: fix this
+	reflectionshader.setMat4("model", mesh2.getMM());
+	reflectionshader.setMat4("model", mesh3.getMM());
 }
 
 void Game::GameLoop()
@@ -246,7 +257,7 @@ void Game::ProcessUserInputs()
 void Game::UpdateDisplay()
 {
 	gameDisplay->ClearDisplay(0.0f, 0.0f, 0.0f, 1.0f); //clear the display
-	texture.UseTexture(0);
+
 	//shader.UseShader();
 	//fogshader.UseShader();
 	//toonshader.UseShader();
@@ -254,8 +265,10 @@ void Game::UpdateDisplay()
 	//rimshader.UseShader();
 	//LinkToonRimShaderData(toonrimshader);
 	//toonrimshader.UseShader();
-	geoshader.UseShader();	
-	LinkGeoShader();
+	//geoshader.UseShader();	
+	//LinkGeoShader();
+	reflectionshader.UseShader();
+
 	//MESH1
 	//shader.UpdateTransform(mesh1.transform, camera);
 	//fogshader.UpdateTransform(mesh1.transform, camera);
@@ -263,8 +276,9 @@ void Game::UpdateDisplay()
 	//toonshader.UpdateTransform(mesh1.transform, camera);
 	//rimshader.UpdateTransform(mesh1.transform, camera);
 	//toonrimshader.UpdateTransform(mesh1.transform, camera);
-	geoshader.UpdateTransform(mesh1.transform, camera);
-
+	//geoshader.UpdateTransform(mesh1.transform, camera);
+	reflectionshader.UpdateTransform(mesh1.transform, camera);
+	texture.UseTexture(0);
 	mesh1.Display(-1.0, 0.0, 0.0, counter, 0.0, 0.0, 1.0, camera);
 
 	//MESH2
@@ -274,7 +288,8 @@ void Game::UpdateDisplay()
 	//toonshader.UpdateTransform(mesh2.transform, camera);
 	//rimshader.UpdateTransform(mesh2.transform, camera);
 	//toonrimshader.UpdateTransform(mesh2.transform, camera);
-	geoshader.UpdateTransform(mesh2.transform, camera);
+	//geoshader.UpdateTransform(mesh2.transform, camera);
+	reflectionshader.UpdateTransform(mesh2.transform, camera);
 	texture.UseTexture(1);
 	mesh2.Display(0.0, sinf(counter) * 5, 0.0, 0.0, 0.0, 0.0, 0.1, camera);
 
@@ -285,13 +300,14 @@ void Game::UpdateDisplay()
 	//toonshader.UpdateTransform(mesh3.transform, camera);
 	//rimshader.UpdateTransform(mesh3.transform, camera);
 	//toonrimshader.UpdateTransform(mesh3.transform, camera);
-	geoshader.UpdateTransform(mesh3.transform, camera);
+	//geoshader.UpdateTransform(mesh3.transform, camera);
+	reflectionshader.UpdateTransform(mesh3.transform, camera);
 	texture.UseTexture(2);
 	mesh3.Display(3.0, 0.0, sinf(counter) * 15, 0.0, counter, 0.0, 1.0, camera);
 
 	counter += 0.01f;
 
-	Skybox();
+	DisplaySkybox();
 
 	glEnableClientState(GL_COLOR_ARRAY);
 	glEnd();

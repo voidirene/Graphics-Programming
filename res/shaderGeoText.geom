@@ -1,4 +1,3 @@
-//Version number
 #version 330 core
 
 //Layout qualfier

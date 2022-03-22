@@ -1,20 +1,36 @@
 ﻿  Game.cpp
-C:\Users\AMARGA200\Documents\GitHub\Graphics-Programming\Lab1\Camera.h(92,1): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
+C:\Projects\Graphics-Programming\Lab1\Camera.h(92,28): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\AMARGA200\Documents\GitHub\Graphics-Programming\Lab1\Camera.h(97,1): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
+C:\Projects\Graphics-Programming\Lab1\Camera.h(97,28): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\AMARGA200\Documents\GitHub\Graphics-Programming\Lab1\Camera.h(102,1): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
+C:\Projects\Graphics-Programming\Lab1\Camera.h(102,28): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\AMARGA200\Documents\GitHub\Graphics-Programming\Lab1\Game.cpp(279,71): warning C4305: 'argument': truncation from 'double' to 'float'
-  LINK : C:\Users\AMARGA200\Documents\GitHub\Graphics-Programming\Debug\Labs.exe not found or not built by the last incremental link; performing full link
+C:\Projects\Graphics-Programming\Lab1\Game.cpp(294,71): warning C4305: 'argument': truncation from 'double' to 'float'
+  Mesh.cpp
+C:\Projects\Graphics-Programming\Lab1\Camera.h(92,28): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Projects\Graphics-Programming\Lab1\Camera.h(97,28): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Projects\Graphics-Programming\Lab1\Camera.h(102,28): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+  Generating Code...
 LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
-  Lab1.vcxproj -> C:\Users\AMARGA200\Documents\GitHub\Graphics-Programming\Debug\Labs.exe
+  Lab1.vcxproj -> C:\Projects\Graphics-Programming\Debug\Labs.exe
