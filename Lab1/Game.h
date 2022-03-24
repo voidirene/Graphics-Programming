@@ -9,7 +9,6 @@
 #include "Texturing.h"
 #include <string>
 #include <iostream>
-
 using std::cout;
 
 enum class GameState { PLAYING, QUITTING };
@@ -59,12 +58,12 @@ private:
 
 	float counter;
 
+	//TODO: move skybox stuff to its own class
 	void DisplaySkybox();
 	void InitializeSkybox();
 	GLuint skyboxVAO, skyboxVBO, cubemapTexture;
 	std::vector<std::string> faces;
 	Texturing skybox;
 	Shading shaderSkybox;
-
 };
 

@@ -13,5 +13,5 @@ void main()
 {
     Normal = mat3(transpose(inverse(model))) * aNormal;
     Position = vec3(model * vec4(aPos, 1.0));
-    gl_Position = projection * view * model * vec4(aPos, 1.0); //TODO: is it supposed to be aPos or Position here?
+    gl_Position = projection * view * model * vec4(Position, 1.0); //TODO: is it supposed to be aPos or Position here?
 }  

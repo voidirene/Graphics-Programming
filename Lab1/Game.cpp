@@ -54,6 +54,7 @@ void Game::InitializeSystems()
 	//LinkGeoShader();
 	reflectionshader.InitializeShader("..\\res\\shaderReflection");
 	reflectionshader.UseShader();
+	LinkReflectionShader();
 
 	texture.InitializeTexture("..\\res\\bricks.jpg"); //load a texture
 	texture.InitializeTexture("..\\res\\water.jpg");
@@ -194,9 +195,10 @@ void Game::LinkReflectionShader()
 {
 	reflectionshader.setMat4("view", camera.GetView());
 	reflectionshader.setMat4("projection", camera.GetProjection());
-	reflectionshader.setMat4("model", mesh1.getMM()); //TODO: fix this
-	reflectionshader.setMat4("model", mesh2.getMM());
-	reflectionshader.setMat4("model", mesh3.getMM());
+	reflectionshader.setVec3("cameraPos", camera.GetPosition());
+	reflectionshader.setMat4("model", mesh1.getMM()); //TODO: fix & remove some of these
+	//reflectionshader.setMat4("model", mesh2.getMM());
+	//reflectionshader.setMat4("model", mesh3.getMM());
 }
 
 void Game::GameLoop()
@@ -207,7 +209,7 @@ void Game::GameLoop()
 		ProcessUserInputs();
 		UpdateDisplay();
 
-		DetectCollision(mesh1.boundingSphere.GetPosition(), mesh1.boundingSphere.GetRadius(), mesh2.boundingSphere.GetPosition(), mesh2.boundingSphere.GetRadius());
+		//DetectCollision(mesh1.boundingSphere.GetPosition(), mesh1.boundingSphere.GetRadius(), mesh2.boundingSphere.GetPosition(), mesh2.boundingSphere.GetRadius());
 	}
 
 	Exit("Escape key pressed, closing program...");
@@ -268,6 +270,7 @@ void Game::UpdateDisplay()
 	//geoshader.UseShader();	
 	//LinkGeoShader();
 	reflectionshader.UseShader();
+	LinkReflectionShader();
 
 	//MESH1
 	//shader.UpdateTransform(mesh1.transform, camera);
@@ -289,9 +292,9 @@ void Game::UpdateDisplay()
 	//rimshader.UpdateTransform(mesh2.transform, camera);
 	//toonrimshader.UpdateTransform(mesh2.transform, camera);
 	//geoshader.UpdateTransform(mesh2.transform, camera);
-	reflectionshader.UpdateTransform(mesh2.transform, camera);
-	texture.UseTexture(1);
-	mesh2.Display(0.0, sinf(counter) * 5, 0.0, 0.0, 0.0, 0.0, 0.1, camera);
+	//reflectionshader.UpdateTransform(mesh2.transform, camera);
+	//texture.UseTexture(1);
+	//mesh2.Display(0.0, sinf(counter) * 5, 0.0, 0.0, 0.0, 0.0, 0.1, camera);
 
 	//MESH3
 	//shader.UpdateTransform(mesh3.transform, camera);
@@ -301,9 +304,9 @@ void Game::UpdateDisplay()
 	//rimshader.UpdateTransform(mesh3.transform, camera);
 	//toonrimshader.UpdateTransform(mesh3.transform, camera);
 	//geoshader.UpdateTransform(mesh3.transform, camera);
-	reflectionshader.UpdateTransform(mesh3.transform, camera);
-	texture.UseTexture(2);
-	mesh3.Display(3.0, 0.0, sinf(counter) * 15, 0.0, counter, 0.0, 1.0, camera);
+	//reflectionshader.UpdateTransform(mesh3.transform, camera);
+	//texture.UseTexture(2);
+	//mesh3.Display(3.0, 0.0, sinf(counter) * 15, 0.0, counter, 0.0, 1.0, camera);
 
 	counter += 0.01f;
 
