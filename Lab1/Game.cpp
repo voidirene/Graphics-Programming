@@ -38,23 +38,11 @@ void Game::InitializeSystems()
 
 	shader.InitializeShader("..\\res\\shader"); //create a new shader
 	fogshader.InitializeShader("..\\res\\FogShader");
-	//fogshader.UseShader();
-	//LinkFogShaderData(fogshader);
 	toonshader.InitializeShader("..\\res\\ToonShader");
-	//toonshader.UseShader();
-	//LinkToonShaderData(toonshader);
 	rimshader.InitializeShader("..\\res\\RimLightingShader");
-	//rimshader.UseShader();
-	//LinkRimLightingShaderData(rimshader);
 	toonrimshader.InitializeShader("..\\res\\ToonRimShader");
-	//toonrimshader.UseShader();
-	//LinkToonRimShaderData(toonrimshader);
 	geoshader.InitializeGeoShader("..\\res\\shaderGeoText");
-	//geoshader.UseShader();
-	//LinkGeoShader();
 	reflectionshader.InitializeShader("..\\res\\shaderReflection");
-	reflectionshader.UseShader();
-	LinkReflectionShader();
 
 	texture.InitializeTexture("..\\res\\bricks.jpg"); //load a texture
 	texture.InitializeTexture("..\\res\\water.jpg");
@@ -154,7 +142,6 @@ void Game::DisplaySkybox()
 	glBindVertexArray(0);
 	glDepthFunc(GL_LESS); // set depth function back to default
 }
-
 
 void Game::LinkFogShaderData() //TODO: combine these methods?
 {
@@ -263,15 +250,11 @@ void Game::UpdateDisplay()
 	//shader.UseShader();
 	//fogshader.UseShader();
 	//toonshader.UseShader();
-	//LinkRimLightingShaderData(rimshader);
+	//LinkRimLightingShaderData();
 	//rimshader.UseShader();
-	//LinkToonRimShaderData(toonrimshader);
-	//toonrimshader.UseShader();
-	//geoshader.UseShader();	
-	//LinkGeoShader();
+
 	reflectionshader.UseShader();
 	LinkReflectionShader();
-
 	//MESH1
 	//shader.UpdateTransform(mesh1.transform, camera);
 	//fogshader.UpdateTransform(mesh1.transform, camera);
@@ -284,6 +267,8 @@ void Game::UpdateDisplay()
 	texture.UseTexture(0);
 	mesh1.Display(-1.0, 0.0, 0.0, counter, 0.0, 0.0, 1.0, camera);
 
+	geoshader.UseShader();
+	LinkGeoShader();
 	//MESH2
 	//shader.UpdateTransform(mesh2.transform, camera);
 	//fogshader.UpdateTransform(mesh2.transform, camera);
@@ -291,22 +276,24 @@ void Game::UpdateDisplay()
 	//toonshader.UpdateTransform(mesh2.transform, camera);
 	//rimshader.UpdateTransform(mesh2.transform, camera);
 	//toonrimshader.UpdateTransform(mesh2.transform, camera);
-	//geoshader.UpdateTransform(mesh2.transform, camera);
+	geoshader.UpdateTransform(mesh2.transform, camera);
 	//reflectionshader.UpdateTransform(mesh2.transform, camera);
-	//texture.UseTexture(1);
-	//mesh2.Display(0.0, sinf(counter) * 5, 0.0, 0.0, 0.0, 0.0, 0.1, camera);
+	texture.UseTexture(1);
+	mesh2.Display(0.0, sinf(counter) * 5, 0.0, 0.0, 0.0, 0.0, 0.1, camera);
 
+	LinkToonRimShaderData();
+	toonrimshader.UseShader();
 	//MESH3
 	//shader.UpdateTransform(mesh3.transform, camera);
 	//fogshader.UpdateTransform(mesh3.transform, camera);
 	//fogshader.setMat4("ModelMatrix", mesh3.transform.GetModel());
 	//toonshader.UpdateTransform(mesh3.transform, camera);
 	//rimshader.UpdateTransform(mesh3.transform, camera);
-	//toonrimshader.UpdateTransform(mesh3.transform, camera);
+	toonrimshader.UpdateTransform(mesh3.transform, camera);
 	//geoshader.UpdateTransform(mesh3.transform, camera);
 	//reflectionshader.UpdateTransform(mesh3.transform, camera);
-	//texture.UseTexture(2);
-	//mesh3.Display(3.0, 0.0, sinf(counter) * 15, 0.0, counter, 0.0, 1.0, camera);
+	texture.UseTexture(2);
+	mesh3.Display(3.0, 0.0, sinf(counter) * 15, 0.0, counter, 0.0, 1.0, camera);
 
 	counter += 0.01f;
 

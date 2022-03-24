@@ -14,4 +14,22 @@ C:\Projects\Graphics-Programming\Lab1\Camera.h(102,28): warning C4244: '+=': con
           [
               T=float
           ]
+C:\Projects\Graphics-Programming\Lab1\Game.cpp(282,71): warning C4305: 'argument': truncation from 'double' to 'float'
+  Main.cpp
+C:\Projects\Graphics-Programming\Lab1\Camera.h(92,28): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Projects\Graphics-Programming\Lab1\Camera.h(97,28): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Projects\Graphics-Programming\Lab1\Camera.h(102,28): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+  Generating Code...
   Lab1.vcxproj -> C:\Projects\Graphics-Programming\Debug\Labs.exe
