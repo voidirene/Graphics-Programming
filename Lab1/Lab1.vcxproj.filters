@@ -127,5 +127,11 @@
     <None Include="..\res\shaderReflection.vert">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="..\res\ADSshader.frag">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\ADSshader.vert">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
