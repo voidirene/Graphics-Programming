@@ -194,10 +194,9 @@ void Game::LinkADSShaderData()
 	adsshader.setMat4("view", camera.GetView());
 	adsshader.setMat4("projection", camera.GetProjection());
 	adsshader.setMat4("model", mesh3.getMM());
-	adsshader.setVec3("lightPos", 1.2f, 1.0f, 2.0f);
+	adsshader.setVec3("lightPos", 0.5f, 2.0f, -3.0f);
 	adsshader.setVec3("viewPos", camera.GetPosition());
 	adsshader.setVec3("lightColor", 1.0f, 1.0f, 1.0f);
-	adsshader.setVec3("objectColor", 1.0f, 0.5f, 0.31f);
 }
 
 void Game::GameLoop()
@@ -306,7 +305,7 @@ void Game::UpdateDisplay()
 	//reflectionshader.UpdateTransform(mesh3.transform, camera);
 	adsshader.UpdateTransform(mesh3.transform, camera);
 	texture.UseTexture(2);
-	mesh3.Display(3.0, 0.0, sinf(counter) * 15, 0.0, counter, 0.0, 1.0, camera);
+	mesh3.Display(3.0, 0.0, sinf(counter) * 3, 0.0, counter, 0.0, 1.0, camera);
 
 	counter += 0.01f;
 

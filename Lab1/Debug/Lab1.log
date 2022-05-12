@@ -14,5 +14,5 @@ C:\Projects\Graphics-Programming\Lab1\Camera.h(102,28): warning C4244: '+=': con
           [
               T=float
           ]
-C:\Projects\Graphics-Programming\Lab1\Game.cpp(294,71): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Projects\Graphics-Programming\Lab1\Game.cpp(293,71): warning C4305: 'argument': truncation from 'double' to 'float'
   Lab1.vcxproj -> C:\Projects\Graphics-Programming\Debug\Labs.exe
